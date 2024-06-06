@@ -1,4 +1,3 @@
-
 <header class="<%= current_page?(root_path) ? "hero" : "hero small" %>">
   <section class="title">
     <h3>Welcome to</h3>
@@ -67,13 +66,21 @@
         <li class="nav-item">
           <%= link_to about_index_url, class: "nav-link " do %> About Us <% end %>
         </li>
-        <li class="nav-item">
-          <% if current_user %>
-            Welcome <%= current_user.first_name %>! | <%= link_to "Logout", '/logout' %>
-          <% else %>
-            <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-          <% end %>
-        </li>
+        <% if current_user %>
+          <li class="nav-item">
+            Signed in as: <%= current_user.first_name %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '/logout', class: "nav-link" do %> Logout <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to '/login', class: "nav-link" do %> Login <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '/signup', class: "nav-link" do %> Signup <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
