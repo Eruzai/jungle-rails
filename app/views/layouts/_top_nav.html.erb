@@ -67,6 +67,13 @@
         <li class="nav-item">
           <%= link_to about_index_url, class: "nav-link " do %> About Us <% end %>
         </li>
+        <li class="nav-item">
+          <% if current_user %>
+            Welcome <%= current_user.first_name %>! | <%= link_to "Logout", '/logout' %>
+          <% else %>
+            <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
