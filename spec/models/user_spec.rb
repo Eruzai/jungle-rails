@@ -80,4 +80,52 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe '.authenticate_with_credentials' do
+
+    before do
+      @user = User.create( first_name: 'Just', last_name: 'Aguy', email: 'jaguy@email.com', password: 'testtest', password_confirmation: 'testtest')
+    end
+
+    describe 'when given correct login credentials' do
+      it 'logs in successfully' do
+        @session = User.authenticate_with_credentials('jaguy@email.com', 'testtest')
+
+        expect(@session).to eq(@user)
+      end
+    end
+
+    describe 'when given an email that does not exist' do
+      it 'does not log in' do
+        @session = User.authenticate_with_credentials('jagirl@email.com', 'testtest')
+
+        expect(@session).to eq(nil)
+      end
+    end
+
+    describe 'when given an incorrect password' do
+      it 'does not log in' do
+        @session = User.authenticate_with_credentials('jaguy@email.com', 'testtest1')
+
+        expect(@session).to eq(nil)
+      end
+    end
+
+    describe 'when given correct login credentials with an email that has spaces in front or behind' do
+      it 'logs in successfully' do
+        @session = User.authenticate_with_credentials('  jaguy@email.com  ', 'testtest')
+
+        expect(@session).to eq(@user)
+      end
+    end
+
+    describe 'when given correct login credentials with an email that is in a different case' do
+      it 'logs in successfully' do
+        @session = User.authenticate_with_credentials('JAguy@EMAIL.com', 'testtest')
+
+        expect(@session).to eq(@user)
+      end
+    end
+
+  end
+
 end
