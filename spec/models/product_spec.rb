@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
 
-  describe 'Validations' do
+  describe 'Validations: When creating a new product' do
     
     describe 'given all valid parameters' do
       it 'saves the product to the database' do
