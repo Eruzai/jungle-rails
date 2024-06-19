@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
-      OrderMailer.with(order: @order).order_receipt_email.deliver_later
+      @order = Order.find(order.id)
+      OrderMailer.with(order: @order).order_receipt_email.deliver_now
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
