@@ -5,12 +5,12 @@
   </head>
   <body>
     <h1>Thank you for you order!</h1>
-    <p>
-      Please keep this email for your records.
-    </p>
-    <p>
-      Your order details are below.
-    </p>    
+    <p>Please keep this email for your records.</p>
+    <p>Your order details are below.</p>
+    <% @order.line_items.each do |item| %>
+      <p><%= item.quantity %><%= Product.find(item.product_id).name %> @ <%= humanized_money_with_symbol Product.find(item.product_id).price %> = <%= humanized_money_with_symbol item.total_price_cents / 100.0 %></p>
+    <% end %>
+    <h4>Your total cost was: <%= humanized_money_with_symbol @order.total_cents / 100.0 %></h4>
     <p>We hope that you enjoy your new plants!</p>
   </body>
 </html>

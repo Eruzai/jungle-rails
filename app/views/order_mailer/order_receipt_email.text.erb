@@ -4,4 +4,10 @@ Thank you for you order!
 Please keep this email for your records.
 Your order details are below.
 
+<% @order.line_items.each do |item| %>
+<%= item.quantity %> <%= Product.find(item.product_id).name %> @ <%= humanized_money_with_symbol Product.find(item.product_id).price %> = <%= humanized_money_with_symbol item.total_price_cents / 100.0 %>
+<% end %>
+
+Your total cost was: <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
+
 We hope that you enjoy your new plants!
