@@ -22,6 +22,11 @@
         <% end %>
       </div>
     </div>
+    <div class="reviews">
+      <% @product.reviews.each do |review| %>
+        <%= render 'review', description: review.description, rating: review.rating, posted_by: review.user.first_name %>
+      <% end %>
+    </div>
   </article>
 
 </section>
