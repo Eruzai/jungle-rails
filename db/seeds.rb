@@ -217,6 +217,53 @@ cat3.products.create!({
   price: 79.99
 })
 
+## REVIEWS
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+prod1 = Product.find_by name: 'Giant Tea'
+prod2 = Product.find_by name: 'Scented Blade'
+prod3 = Product.find_by name: 'Swamp Root'
+prod4 = Product.find_by name: 'Void Fennel'
+prod5 = Product.find_by name: 'Cliff Collard'
+
+prod1.reviews.create!({
+  user_id: 1,
+  description: 'Smells like tea. :)',
+  rating: 4
+})
+
+prod1.reviews.create!({
+  user_id: 1,
+  description: 'I don\'t like tea',
+  rating: 3
+})
+
+prod2.reviews.create!({
+  user_id: 1,
+  description: 'Smells better than the Giant Tea!',
+  rating: 5
+})
+
+prod3.reviews.create!({
+  user_id: 1,
+  description: 'A great plant for my swamp terrarium!',
+  rating: 2
+})
+
+prod4.reviews.create!({
+  user_id: 1,
+  description: 'Do NOT stare at this too long...',
+  rating: 4
+})
+
+prod5.reviews.create!({
+  user_id: 1,
+  description: 'My hamster loves this one.',
+  rating: 5
+})
 
 puts "DONE!"
 
