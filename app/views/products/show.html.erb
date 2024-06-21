@@ -36,7 +36,7 @@
       <%= form.submit 'Post', class: 'btn btn-primary' %>
     <% end %>
     <div class="reviews">
-      <% @reviews.each do |review| %>
+      <% @reviews.reverse_each do |review| %>
         <div>
           <p>Rating: <%= review.rating %>/5</p>
           <p><%= review.user.first_name %>'s review: <%= review.description %></p>
