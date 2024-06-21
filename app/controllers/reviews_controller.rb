@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :require_login
+
   def create
     @product = Product.find params[:product_id]
     @review = @product.reviews.new(review_params)
@@ -20,5 +22,12 @@ class ReviewsController < ApplicationController
       :description,
       :rating
     )
+  end
+
+  def require_login
+    unless current_user
+      flash[:error] = "You must be logged in to leave a review"
+      redirect_to '/login'
+    end
   end
 end
