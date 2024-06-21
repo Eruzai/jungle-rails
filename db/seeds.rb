@@ -21,6 +21,18 @@ end
 
 # Let's do this ...
 
+## USERS
+
+puts "Creating Test User ..."
+
+User.create!({
+  first_name: 'Admin',
+  last_name: 'Test',
+  email: 'test@email.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
