@@ -42,6 +42,11 @@
         <div>
           <p>Rating: <%= review.rating %>/5</p>
           <p><%= review.user.first_name %>'s review: <%= review.description %></p>
+          <% if current_user && current_user.id == review.user_id %>
+            <%= button_to product_review_path(product_id: @product.id, review_id: review.id), class: 'btn', method: :delete do %>
+              <%= fa_icon "trash", text: 'Delete' %>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
     </div>
