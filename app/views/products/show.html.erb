@@ -37,7 +37,10 @@
     <% end %>
     <div class="reviews">
       <% @reviews.each do |review| %>
-        <%= render 'review', description: review.description, rating: review.rating, posted_by: review.user.first_name %>
+        <div>
+          <p>Rating: <%= review.rating %>/5</p>
+          <p><%= review.user.first_name %>'s review: <%= review.description %></p>
+        </div>
       <% end %>
     </div>
   </article>
